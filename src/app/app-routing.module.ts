@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PagesComponent } from './components/pages.component';
+import { AuthGuard } from './guards/auth.guard';
 // Components
 //import { LoginComponent } from './auth/login/login.component';
 //import { RegisterComponent } from './auth/register/register.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
+    canActivate: [AuthGuard],
     children: [
 
       {

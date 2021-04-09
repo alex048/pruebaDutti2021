@@ -5,7 +5,7 @@
       <a class="dropdown-item" [routerLink]="'pages/ships'">Ships</a>
       <a class="dropdown-item" [routerLink]="'pages/pageOne'">Page One</a>
       <a class="dropdown-item" [routerLink]="'pages/pageTwo'">Page Two</a>
-      <a class="dropdown-item" [routerLink]="''">Login</a>
+      <a (click)="logout()" class="dropdown-item">Login</a>
     </div>
   </div>
 </nav>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: UserService) { }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.apiService.logout();
+  }
 }
