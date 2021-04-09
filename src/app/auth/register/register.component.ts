@@ -22,10 +22,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      first_name: [ '', [Validators.required, Validators.minLength(3)]],
-      last_name: [ '', [Validators.required, Validators.minLength(3)]],
-      username: [ '', [Validators.required, Validators.minLength(3)]],
-      email: [ '', [Validators.required, Validators.minLength(6)]],
+      first_name: ['', [Validators.required, Validators.minLength(3)]],
+      last_name: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.minLength(6)]],
 
     })
   }
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     var userLogin = this.registerForm.value;
     usersList.push(userLogin)
     console.log('User Register -->', usersList)
-    this.router.navigate(['/principal/ships'])
+    this.router.navigate(['/pages/ships'])
 
   }
 
