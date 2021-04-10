@@ -1,3 +1,6 @@
 <div class="container">
-  <ships-details [dataList]="starships"></ships-details>
+  <ships-details
+    [dataList]="(_dataList | async)?.ships"
+    (pageChanged)="getShipsPage($event)"
+  ></ships-details>
 </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+
 declare var $: any;
 
 
@@ -10,42 +11,58 @@ declare var $: any;
 export class ShipsDetailsComponent implements OnInit {
 
   @Input() dataList: any;
+  @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>();
   config: any;
   shipId: string = '';
   url: string = '';
   // Modal
   titleDetails: string = '';
   modelDetails: string = '';
+  starshipClass: string = '';
   starship_class: string = '';
 
   constructor() {
+    this.config = {
+      itemsPerPage: 10,//5
+      currentPage: 1,//1
+      //totalItems: this.dataList.length
+    };
   }
 
   ngOnInit(): void {
-    this.config = {
-      itemsPerPage: 5,
-      currentPage: 1,
-      totalItems: this.dataList.length
-    };
 
     console.log('input-> ', this.dataList)
   }
-
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.dataList) {
+      this.config.totalItems = this.dataList.count || 0;
+    }
+  }
   getStarshipId(url) {
-    this.shipId = url.slice(0, -1)
-    const urlImage = `${this.shipId}.jpg`
-    return urlImage !== "";
+    //this.shipId = url.slice(0, -1)
+    //const urlImage = `${this.shipId}.jpg`
+    //  return urlImage !== "";
+    const regex = /\/api\/starships\/(\d+)\/?$/;
+
+    this.shipId = regex.test(url)
+      ? url.match(regex)[1]
+      : undefined;
+
+    const urlImage = `https://starwars-visualguide.com/assets/img/starships/${this.shipId}.jpg`
+
+    return urlImage;
   }
 
-  pageChanged(event) {
-    this.config.currentPage = event;
+  onPageChanged(page) {
+    this.config.currentPage = page;
+    this.pageChanged.emit(page);
   }
 
   openDetails(details) {
-    $("#exampleModal").modal('show');
+    $('#exampleModal').modal('show');
     this.titleDetails = details.name;
     this.modelDetails = details.model;
-    this.starship_class = details.starship_class
+    this.starshipClass = details.starship_class;
   }
 
 }

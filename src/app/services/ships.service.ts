@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, take } from 'rxjs/operators'
 import { Starships } from '../models/starships.module';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Starships } from '../models/starships.module';
 })
 export class ShipsService {
 
-  url: string = 'https://swapi.dev/api/starships/?page=1'
+  url: string = 'https://swapi.dev/api/starships/'
   headerDict = {
     'Authorization': 'none',
     'Access-Control-Allow-Origin': '*'
@@ -20,13 +20,26 @@ export class ShipsService {
 
   constructor(private http: HttpClient) { }
 
-  getStarships(): Observable<any> {
-    return this.http.get<Starships[]>(this.url)
+  getStarships(page = 1): Observable<any> {
+    let params = new HttpParams();
+
+    if (page !== 1) {
+      params = params.set('page', page.toString());
+    }
+
+    return this.http.get(this.url, { params })
+      .pipe(
+        take(1),
+      );
+  }
+
+
+  //.pipe(  map(data => { return data })  )
+  /**
+   *  return this.http.get<Starships[]>(this.url,{params})
       .pipe(map((data: any) => {
         console.log(data.results)
         return data;
       }));
-  }
-
-  //.pipe(  map(data => { return data })  )
+   */
 }

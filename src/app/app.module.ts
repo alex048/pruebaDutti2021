@@ -11,9 +11,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { reducers, effects } from './store';
+import { reducer } from './store/app.reducer';
 import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -26,8 +25,9 @@ import { EffectsModule } from '@ngrx/effects';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    StoreModule.forRoot(reducers),
-    EffectsModule.forRoot(effects)
+    StoreModule.forRoot({
+      ships: reducer
+    }),
 
   ],
   providers: [],
