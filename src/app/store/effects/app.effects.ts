@@ -1,4 +1,5 @@
 
+
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
@@ -22,14 +23,15 @@ export class StarshipsEffects {
   @Effect()
   loadStarships$: Observable<Action> = this.action$.pipe(
     ofType(fromStarshipsActions.LOAD_STARSHIPS),
-    switchMap(() => this.shipsService.getShips()
-    .pipe(
-      map(response => {
-        return new fromStarshipsActions.LoadStarshipsSucess(response);
-      },
-      catchError(error => of(new fromStarshipsActions.LoadStarshipsFail(error)))
-      )
-    ))
+    switchMap(() => this.shipsService.getStarships()
+      .pipe(
+        map(response => {
+          console.log('hola-2', response);
+          return new fromStarshipsActions.LoadStarshipsSucess(response);
+        },
+          catchError(error => of(new fromStarshipsActions.LoadStarshipsFail(error)))
+        )
+      ))
   );
 
 

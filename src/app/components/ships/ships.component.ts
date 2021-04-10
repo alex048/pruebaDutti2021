@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as fromStore from '../../store';
+import { Store } from '@ngrx/store';
 import { ShipsService } from 'src/app/services/ships.service';
+import { AppState } from 'src/app/store';
+import { Starships } from 'src/app/models/starships.module';
 
 @Component({
   selector: 'app-ships',
@@ -9,13 +13,19 @@ import { ShipsService } from 'src/app/services/ships.service';
 export class ShipsComponent implements OnInit {
 
   public dataList: any = [];
+  starships: Starships[];
+  display = 'none';
+  isEditModeEnabled;
 
-  constructor( private shipsService: ShipsService) {}
-
+  constructor(private store: Store<AppState>, private shipsService: ShipsService) {
+  }
   ngOnInit(): void {
-    this.shipsService.getShips().subscribe((ships) => {
-      this.dataList = ships;
-      console.log('SHIPS -->', this.dataList.results)
-    })
+    console.log('init');
+    this.store.dispatch(new fromStore.loadStarships());
+
+    this.store.select(fromStore.getStarships).subscribe(res => {
+      this.starships = res;
+      console.log('hola001', this.starships)
+    });
   }
 }

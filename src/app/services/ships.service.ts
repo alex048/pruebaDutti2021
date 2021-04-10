@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
+import { Starships } from '../models/starships.module';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,13 @@ export class ShipsService {
 
   constructor(private http: HttpClient) { }
 
-  getShips(): Observable<any> {
-    return this.http.get(this.url).pipe(
-      map(data => { return data })
-    );
+  getStarships(): Observable<any> {
+    return this.http.get<Starships[]>(this.url)
+      .pipe(map((data: any) => {
+        console.log(data.results)
+        return data;
+      }));
   }
 
-
+  //.pipe(  map(data => { return data })  )
 }

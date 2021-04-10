@@ -18,15 +18,17 @@ export class ShipsDetailsComponent implements OnInit {
   modelDetails: string = '';
   starship_class: string = '';
 
-  constructor() { 
+  constructor() {
   }
-  
+
   ngOnInit(): void {
-      this.config = {
-        itemsPerPage: 5,
-        currentPage: 1,
-        totalItems: this.dataList.length
-      };
+    this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.dataList.length
+    };
+
+    console.log('input-> ', this.dataList)
   }
 
   getStarshipId(url) {
@@ -35,7 +37,7 @@ export class ShipsDetailsComponent implements OnInit {
     return urlImage !== "";
   }
 
-  pageChanged(event){
+  pageChanged(event) {
     this.config.currentPage = event;
   }
 

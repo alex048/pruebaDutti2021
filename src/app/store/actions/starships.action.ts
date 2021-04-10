@@ -4,7 +4,7 @@ export const LOAD_STARSHIPS = '[Starships] Load starships';
 export const LOAD_STARSHIPS_SUCCESS = '[Starships] Load starships success';
 export const LOAD_STARSHIPS_FAIL = '[Starships] Load starships fail';
 
-export class LoadStarships implements Action {
+export class loadStarships implements Action {
   readonly type = LOAD_STARSHIPS;
 }
 
@@ -22,4 +22,4 @@ export class LoadStarshipsFail implements Action {
   }
 }
 
-export type StarshipsActions = LoadStarships | LoadStarshipsSucess | LoadStarshipsFail;
+export type StarshipsActions = loadStarships | LoadStarshipsSucess | LoadStarshipsFail;

@@ -2,11 +2,11 @@ import * as fromStarshipsReducer from './app.reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface AppState {
-    customers: fromStarshipsReducer.StarshipsState;
+  starships: fromStarshipsReducer.StarshipsState;
 }
 
 export const reducers = {
-    customers: fromStarshipsReducer.reducer
+  starships: fromStarshipsReducer.reducer
 };
 
 export const getState = (state) => state;
