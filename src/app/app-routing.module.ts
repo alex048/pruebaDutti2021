@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { PagesComponent } from './components/pages.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PagesComponent } from './pages/pages.component';
 // Components
 //import { LoginComponent } from './auth/login/login.component';
 //import { RegisterComponent } from './auth/register/register.component';
@@ -39,7 +39,7 @@ const routes: Routes = [
 
       {
         path: 'pages',
-        loadChildren: () => import('./components/pages.module').then(module => module.PagesModule)
+        loadChildren: () => import('./pages/pages.module').then(module => module.PagesModule)
       },
 
       // { path: 'default', component: DefaultComponent },

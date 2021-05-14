@@ -27,8 +27,6 @@ export function ShipsReducer(
     case ShipsActions.GET_STARSHIPS_PAGE:
       return state;
     case ShipsActions.GET_STARSHIPS_FAIL:
-      // NOTE esto se podría mostrar en un div en la página
-      alert('Se ha producido un error en la carga');
       return state;
     case ShipsActions.GET_STARSHIPS_SUCCESS:
       return { ...action.payload };

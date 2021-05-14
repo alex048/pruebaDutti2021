@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 ;
-import { ShipsComponent } from './ships.component';
+
 import { ShipsRoutingModule } from './ships-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
+import { ShipsComponent } from './ships.component';
 import { ShipsDetailsComponent } from './ships-details/ships-details.component';
 
 @NgModule({
