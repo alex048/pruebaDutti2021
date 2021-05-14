@@ -16,6 +16,8 @@ import { StoreModule } from '@ngrx/store';
 import { ShipsReducer } from './store/reducer/starships.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ShipsEffects } from './store/effects/starships.effects';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { ShipsEffects } from './store/effects/starships.effects';
       ships: ShipsReducer
     }),
     EffectsModule.forRoot([ShipsEffects]),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

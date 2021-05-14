@@ -15,13 +15,12 @@ export class ShipsComponent implements OnInit {
   public shipsState$: Observable<StarshipsState>;
 
   constructor(private store: Store<AppState>) {
-    // Observable del Store
     this.shipsState$ = this.store.select('ships');
   }
 
   ngOnInit(): void {
     this.store.dispatch({
-      type: StarshipsActions.GET_SHIPS_PAGE,
+      type: StarshipsActions.GET_STARSHIPS_PAGE,
       payload: { page: 1 },
     });
   }

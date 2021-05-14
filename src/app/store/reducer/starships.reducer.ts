@@ -22,15 +22,15 @@ export function ShipsReducer(
   action: StarshipsActions
 ) {
   switch (action.type) {
-    case ShipsActions.GET_SHIPS:
+    case ShipsActions.GET_STARSHIPS:
       return state;
-    case ShipsActions.GET_SHIPS_PAGE:
+    case ShipsActions.GET_STARSHIPS_PAGE:
       return state;
-    case ShipsActions.GET_SHIPS_ERROR:
+    case ShipsActions.GET_STARSHIPS_FAIL:
       // NOTE esto se podría mostrar en un div en la página
       alert('Se ha producido un error en la carga');
       return state;
-    case ShipsActions.GET_SHIPS_SUCCESS:
+    case ShipsActions.GET_STARSHIPS_SUCCESS:
       return { ...action.payload };
     default:
       return state;

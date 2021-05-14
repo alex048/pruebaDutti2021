@@ -9,25 +9,25 @@ import { GetShipsPage } from '../actions/starships.action';
 @Injectable()
 export class ShipsEffects {
   loadShips$ = createEffect(() => this.actions$.pipe(
-    ofType(StarshipsActions.GET_SHIPS)
+    ofType(StarshipsActions.GET_STARSHIPS)
     , mergeMap(() => this.shipsService.getAllStarships().pipe(
       map((response) => ({
-        type: StarshipsActions.GET_SHIPS_SUCCESS,
+        type: StarshipsActions.GET_STARSHIPS_SUCCESS,
         payload: response,
       })),
-      catchError(() => of({ type: StarshipsActions.GET_SHIPS_ERROR }))
+      catchError(() => of({ type: StarshipsActions.GET_STARSHIPS_FAIL }))
     ))));
 
   loadShipsPage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(StarshipsActions.GET_SHIPS_PAGE),
+      ofType(StarshipsActions.GET_STARSHIPS_PAGE),
       mergeMap((action: GetShipsPage) => {
         return this.shipsService.getPage(action.payload.page).pipe(
           map((shipsResponse) => ({
-            type: StarshipsActions.GET_SHIPS_SUCCESS,
+            type: StarshipsActions.GET_STARSHIPS_SUCCESS,
             payload: { shipsResponse, currentPage: action.payload.page },
           })),
-          catchError(() => of({ type: StarshipsActions.GET_SHIPS_ERROR }))
+          catchError(() => of({ type: StarshipsActions.GET_STARSHIPS_FAIL }))
         );
       })
     )

@@ -31,7 +31,6 @@ export class ShipsDetailsComponent implements OnChanges {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    // Establecemos el array dfe imágenes para evitar llamadas a funciones desde el template
     this.generateStarshipsImages();
   }
 
@@ -44,7 +43,6 @@ export class ShipsDetailsComponent implements OnChanges {
   }
 
   private getStarshipImageFromUrl(url: string) {
-    // si la url termina en / lo eliminamos
     if (url[url.length - 1] === '/') {
       url = url.substring(0, url.length - 1);
     }
@@ -52,14 +50,12 @@ export class ShipsDetailsComponent implements OnChanges {
     const urlImage = `https://starwars-visualguide.com/assets/img/starships/${shipId}.jpg`;
     return urlImage;
   }
-
   pageChanged(page: number) {
     this.store.dispatch({
-      type: StarshipsActions.GET_SHIPS_PAGE,
+      type: StarshipsActions.GET_STARSHIPS_PAGE,
       payload: { page },
     });
   }
-
   openDetails(details) {
     $('#exampleModal').modal('show');
     this.titleDetails = details.name;
