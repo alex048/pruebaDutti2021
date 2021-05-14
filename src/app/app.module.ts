@@ -11,9 +11,11 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { reducer } from './store/app.reducer';
-import { StoreModule } from '@ngrx/store';
 
+import { StoreModule } from '@ngrx/store';
+import { ShipsReducer } from './store/reducer/starships.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ShipsEffects } from './store/effects/starships.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,9 +28,9 @@ import { StoreModule } from '@ngrx/store';
     FormsModule,
     SharedModule,
     StoreModule.forRoot({
-      ships: reducer
+      ships: ShipsReducer
     }),
-
+    EffectsModule.forRoot([ShipsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

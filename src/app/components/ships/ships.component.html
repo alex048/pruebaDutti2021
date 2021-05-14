@@ -1,6 +1,7 @@
 <div class="container">
   <ships-details
-    [dataList]="(_dataList | async)?.ships"
-    (pageChanged)="getShipsPage($event)"
+    [ships]="(shipsState$ | async).shipsResponse.results"
+    [currentPage]="(shipsState$ | async).currentPage"
+    [totalShips]="(shipsState$ | async).shipsResponse.count"
   ></ships-details>
 </div>
